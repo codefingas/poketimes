@@ -6,7 +6,6 @@ import {connect} from 'react-redux';
 class Home extends React.Component {
 
    render() {
-       console.log("CONNECTED", this.props);
         let {posts} = this.props,
             PostList = posts.length ? (posts.map(post => {
                 return(

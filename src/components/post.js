@@ -1,10 +1,10 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
+import {deletePost} from '../actions/PostAction';
 
 class Post extends React.Component {
     handleClick = () => {
-        console.log("DELETE POST PROPS", this.props);
         let {deletePost, post, history} = this.props;
             deletePost(post.id);
             history.push('/');
@@ -53,7 +53,7 @@ const MapStateToProps = (state, ownProps) => {
 
 const MapdispatchToProps = (dispatch) => {
     return {
-        deletePost : (id) => {dispatch({type: 'DELETE_POST', id : id})}
+        deletePost : (id) => {dispatch(deletePost(id))}
     }
 }
 
