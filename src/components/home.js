@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
+import Pokeball from '../pokeball.png'
 
 class Home extends React.Component {
     state = {
@@ -10,11 +12,10 @@ class Home extends React.Component {
     componentDidMount(){
         axios.get('https://jsonplaceholder.typicode.com/posts')
             .then(res => {
-                console.log(res);
                 this.setState({
-                    posts : res.data.slice(0, 10 )
+                    posts : res.data.slice(0, 10)
                 })
-        })
+        });
     };
 
    render() {
@@ -22,10 +23,13 @@ class Home extends React.Component {
             PostList = posts.length ? (posts.map(post => {
                 return(
                     <div className="post card" key={post.id}>
+                        <img src={Pokeball} alt="A Poke ball"/>
                         <div className="card-content">
-                            <span className="card-title">
-                                {post.title}
-                            </span>
+                            <Link to={'/' + post.id}>
+                                <span className="card-title red-text">
+                                    {post.title}
+                                </span>
+                            </Link>
                             <p>{post.body}</p>
                         </div>
                     </div>
@@ -34,7 +38,7 @@ class Home extends React.Component {
             ) : (<div className="center">No post yet</div>);
 
             return (
-                <div className="container">
+                <div className="container home">
                     <h4 className="center">
                         Home
                     </h4>
